@@ -1,0 +1,356 @@
+@font-face {
+  font-family: "VT323";
+  src: url("../../fonts/VT323/VT323-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../../fonts/Inter/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../../fonts/JetBrainsMono/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Сетка размеров шрифтов */
+  --font-size-sm: 0.88rem;  /* ~14px */
+  --font-size-base: 1rem;   /* 16px  */
+  --font-size-md: 1.25rem;  /* 20px */
+  --font-size-lg: 1.5rem;   /* 24px  */
+
+  /* --- СВЕТЛАЯ ТЕМА (По умолчанию) --- */
+  --bg-color: #fafbfc;          /* Фон страницы */
+  --text-main: #334155;         /* Основной текст Inter */
+  --text-title: #0f172a;        /* Заголовки JetBrains Mono */
+  --border-color: #e2e8f0;      /* Контуры и границы */
+}
+
+/* --- ТЕМНАЯ ТЕМА --- */
+body.dark-theme {
+  --bg-color: #0f172a;          /* Глубокий темно-синий/угольный фон */
+  --text-main: #94a3b8;         /* Светло-серый текст */
+  --text-title: #f8fafc;        /* Чистые белые заголовки */
+  --border-color: #1e293b;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body .no-scroll {
+  overflow-y: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.main-header {
+  padding-right: 1.25em;
+  padding-left: 1.25em;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+}
+
+.header-nav {
+  width: 100%;
+  display: flex;
+  gap: 1.25em;
+}
+
+.header-logo {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  align-items: center;
+  transition: transform 0.1s ease;
+}
+
+.logo-text {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: var(--font-size-base);
+  fill: var(--text-title, #0f172a);
+  opacity: 0.6;
+  transition: fill 0.3s ease, opacity 0.15s ease, text-shadow 0.1s ease;
+}
+
+.text-top {
+  font-weight: 500;
+}
+
+.text-bottom {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.header-logo:hover .logo-text {
+  opacity: 1;
+}
+
+.header-logo:active {
+  transform: translateY(1px);
+}
+
+.header-logo:active .logo-text {
+  text-shadow: 0.03em 0 var(--text-title), -0.03em 0 var(--text-title);
+}
+
+.header-logo:focus-visible {
+  outline: 2px solid var(--text-title);
+  outline-offset: -1px;
+  opacity: 1;
+}
+
+.header-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5em;
+  margin-left: auto;
+}
+
+.header-link {
+  padding: 2em 1.25em;
+  display: block;
+
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-title);
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.header-link:hover {
+  opacity: 1;
+  color: var(--text-title);
+}
+
+.header-link:active {
+  text-shadow: 0.03em 0 var(--text-title), -0.03em 0 var(--text-title);
+  transform: translateY(1px);
+  opacity: 1;
+}
+
+.header-link:focus-visible {
+  outline: 2px solid var(--text-title);
+  outline-offset: -4px;
+  opacity: 1;
+}
+
+.header-list-toggle {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-left: auto;
+}
+
+.header-item-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-language {
+  gap: 0.25em;
+  opacity: 0.4;
+
+  transition: opacity 0.2s ease, font-weight 0.2s ease;
+}
+
+.toggle-language:hover {
+  opacity: 0.8;
+}
+
+.toggle-language:active {
+  transform: translateY(1px);
+  opacity: 1;
+  text-shadow: 0.03em 0 var(--text-title), -0.03em 0 var(--text-title);
+}
+
+.is-active {
+  color: var(--text-title);
+  opacity: 0.6;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.btn-ru-toggle,
+.btn-en-toggle,
+.btn-theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: end;
+  justify-content: center;
+
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 400;
+  font-size: var(--font-size-sm);
+  color: var(--text-title);
+}
+
+.btn-theme-toggle {
+  background-color: var(--text-title);
+
+  mask-image: url("../../icons/stack.svg#lightbulbon-off");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+
+  opacity: 0.6;
+
+  transition: background-color 0.3s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-theme-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.btn-theme-toggle:active {
+  transform: scale(1.08) translateY(1px);
+}
+
+body.dark-theme .btn-theme-toggle {
+  background-color: #f8fafc;
+  mask-image: url("../../icons/stack.svg#lightbulbon-on");
+}
+
+.btn-header-burger {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+
+  display: none;
+
+  width: 1.5em;
+  height: 1.8em;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: var(--bg-color);
+
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-header-burger .line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-title);
+
+  opacity: 0.5;
+
+  transition: transform 0.3s, opacity 0.2s ease;
+}
+
+.btn-header-burger-close .line-one {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.btn-header-burger-close .line-two {
+  opacity: 0;
+}
+
+.btn-header-burger-close .line-three {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+  .header-list {
+    gap: 1.5em;
+  }
+}
+
+@media (max-width: 960px) {
+  .header-list {
+    display: none;
+  }
+
+  .header-list.menu-open {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    z-index: 3;
+
+    background-color: var(--bg-color);
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-list-toggle {
+    margin-right: 50px;
+  }
+
+  .btn-header-burger {
+    display: flex;
+  }
+}
+
