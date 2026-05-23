@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Сайт-визитка</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="./scripts/index.js" defer></script>
 </head>
+
 <body>
-  <header></header>
+  <header class="main-header">
+    <div class="wrapper header-wrapper">
+      <nav class="header-nav">
+        <a class="header-logo" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 36" width="110" height="36">
+            <text class="logo-text text-top" x="0" y="13" text-anchor="start">theBear</text>
+            <text class="logo-text text-bottom" x="0" y="31" text-anchor="start">Benjamin</text>
+          </svg>
+        </a>
+        <ul class="header-list">
+          <li class="header-item">
+            <a class="header-link" href="#" data-i18n="header__link__education">Образование</a>
+          </li>
+          <li class="header-item">
+            <a class="header-link" href="#" data-i18n="header__link__code">Код</a>
+          </li>
+          <li class="header-item">
+            <a class="header-link" href="#" data-i18n="header__link__project">Проекты</a>
+          </li>
+          <li class="header-item">
+            <a class="header-link" href="#" data-i18n="header__link__certificate">Сертификаты</a>
+          </li>
+          <li class="header-item">
+            <a class="header-link" href="#" data-i18n="header__link__feedback">Написать</a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="header-list-toggle">
+        <li class="header-item-toggle">
+          <button class="btn-ru-toggle toggle-language is-active" type="button">Ru</button>
+          <button class="btn-en-toggle toggle-language" type="button">En</button>
+        </li>
+        <li class="header-item-toggle toggle-theme">
+          <button class="btn-theme-toggle" type="button">
+            <span class="visually-hidden" data-i18n="btn_theme_toggle_text">Переключить тему оформления</span>
+          </button>
+        </li>
+      </ul>
+      <button class="btn-header-burger" type="button">
+        <span class="visually-hidden btn-header-burger-text" data-i18n="btn__header__toggle__text">Открыть меню</span>
+        <span class="line line-one"></span>
+        <span class="line line-two"></span>
+        <span class="line line-three"></span>
+      </button>
+    </div>
+  </header>
   <main>
     <h1>Личный сайт визитка</h1>
   </main>
   <footer></footer>
 </body>
+
 </html>
