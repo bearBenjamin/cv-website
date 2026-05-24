@@ -57,7 +57,40 @@
     </div>
   </header>
   <main>
-    <h1>Личный сайт визитка</h1>
+    <section class="hero">
+      <div class="wrapper hero-wrapper">
+        <h1 class="visually-hidden">Личный сайт визитка</h1>
+        <picture class="hero-avatar">
+          <source width="210" height="210" type="image/webp" srcset="./images/avatar@1x.webp 1x, ./images/avatar@2x.webp 2x">
+          <img class="hero-avatar-img" width="210" height="210" src="./images/avatar@1x.jpg" srcset="./images/avatar@2x.jpg" alt="аватар">
+        </picture>
+        <ul class="hero-list">
+          <li class="hero-name">Илья Конев (bearBenjamin)</li>
+          <li class="hero-profession">фронтенд-разработчик</li>
+          <li class="hero-item hero-email">
+            <span class="visually-hidden" data-i18n="icon__email">Электронная почта</span>
+            <a class="hero-link hero__email__link" href="mailto:ilhakonev@yandex.ru">ilhakonev@yandex.ru</a>
+          </li>
+          <li class="hero-item hero-github">
+            <span class="visually-hidden" data-i18n="icon-github">Профиль GitHub</span>
+            <a class="hero-link hero-github-link" href="https://github.com/bearBenjamin" target="_blank" rel="noopener noreferrer">bearBenjamin</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="quote-section">
+      <div class="wrapper quote-wrapper">
+        <h2 class="quote-title visually-hidden">О себе цитатой</h2>
+        <blockquote class="quote-block">
+          <p class="quote-text" data-i18n="quote_text">
+            Совершенство достигнуто не тогда, когда нечего добавить, а когда нечего отнять.
+          </p>
+          <cite class="quote-author" data-i18n="quote_author">
+            Антуан де Сент-Экзюпери
+          </cite>
+        </blockquote>
+      </div>
+    </section>
   </main>
   <footer></footer>
 </body>

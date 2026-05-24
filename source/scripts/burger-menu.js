@@ -3,7 +3,14 @@ const menuNav = document.querySelector('.header-list');
 const btnBurger = document.querySelector('.btn-header-burger');
 const btnBurgerText = document.querySelector('.btn-header-burger-text');
 
+// const preventScrollBehavior = (event) => {
+//   event.preventDefault();
+// };
+
 const closeMenu = () => {
+  // window.removeEventListener('wheel', preventScrollBehavior, { passive: false });
+  // window.removeEventListener('touchmove', preventScrollBehavior, { passive: false });
+
   body.classList.remove('no-scroll');
   menuNav.classList.remove('menu-open');
   btnBurger.classList.remove('btn-header-burger-close');
@@ -11,6 +18,10 @@ const closeMenu = () => {
 };
 
 const openMenu = () => {
+  // добавил для блокировки прокрутки страницы под открытым бургер меню два обработчика на глобальное окно, по другому победить Firefox не получилось
+  // window.addEventListener('wheel', preventScrollBehavior, { passive: false });
+  // window.addEventListener('touchmove', preventScrollBehavior, { passive: false });
+
   body.classList.add('no-scroll');
   menuNav.classList.add('menu-open');
   btnBurger.classList.add('btn-header-burger-close');
