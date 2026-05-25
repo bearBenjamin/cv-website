@@ -1,4 +1,5 @@
 import { initMenu } from './burger-menu.js';
+import './theme.js';
 import { initAnimatedQuote } from './animated-quote.js';
 import { typeCode, changeDisk } from './code-animation.js';
 
