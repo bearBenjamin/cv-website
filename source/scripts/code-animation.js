@@ -73,7 +73,6 @@ console.log('Ready.');`,
 
 const codeBox = document.getElementById('code-box');
 const screen = document.getElementById('screen');
-const floppy = document.getElementById('floppy');
 
 let currentDisk = 0;
 let charIndex = 0;
