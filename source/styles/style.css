@@ -408,7 +408,7 @@ body.dark-theme .btn-theme-toggle {
 
 /* стили секции Hero */
 .hero {
-  padding: 4em var(--font-size-md) 2em;
+  padding: 8em var(--font-size-md) 4em;
   background-color: var(--bg-color);
 }
 
@@ -421,7 +421,7 @@ body.dark-theme .btn-theme-toggle {
 .hero-avatar {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .hero-avatar-img {
@@ -528,7 +528,7 @@ body.dark-theme .btn-theme-toggle {
 
 /* секция Quote */
 .quote-section {
-  padding: 7.5rem 1.25em;
+  padding: 8rem 4em;
   background-color: var(--bg-color);
   box-sizing: border-box;
 }
@@ -622,7 +622,7 @@ body.dark-theme .btn-theme-toggle {
 /* секция Education */
 .education-section {
   width: 100%;
-  padding: 0 1.25em 3.75rem;
+  padding: 4em 1.25em 4rem;
   background-color: var(--bg-color);
   box-sizing: border-box;
 }
