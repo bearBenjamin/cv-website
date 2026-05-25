@@ -23,7 +23,7 @@
     "lint:spaces": "ec --exclude vendor/*",
     "lint:markup": "cd source && html-validator --quiet",
     "lint:html": "linthtml source/**/*.html --config .linthtmlrc",
-    "lint:styles": "stylelint \"source/styles/**/*.scss\"",
+    "lint:styles": "stylelint \"source/styles/**/*.css\"",
     "lint:scripts": "eslint . --ignore-path .gitignore --ignore-pattern vendor/",
     "optimize": "npm-run-all -p optimize:**",
     "optimize:raster": "gulp optimizeRaster",
