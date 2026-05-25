@@ -44,6 +44,12 @@
   --text-main: #334155;         /* Основной текст Inter */
   --text-title: #0f172a;        /* Заголовки JetBrains Mono */
   --border-color: #e2e8f0;      /* Контуры и границы */
+
+  /* ---ОСНОВНЫЕ ЦВЕТА СЕКЦИИ КОД --- */
+  --wood-top: #e2b282;     /* Цвет рабочей поверхности */
+  --wood-front: #cd9b6d;   /* Цвет рамки ящиков */
+  --wood-dark: #b58558;    /* Цвет ножек */
+  --drawer-color: #f3f4f6;
 }
 
 /* --- ТЕМНАЯ ТЕМА --- */
@@ -763,3 +769,993 @@ body.dark-theme .btn-theme-toggle {
   }
 }
 
+/* стили секции Code */
+.room-code {
+  width: 100%;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  /* box-sizing: border-box; */
+
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #ffffff,        /* Чистый белый */
+      #ffffff 30px,
+      #fbfbfc 30px,
+      #fbfbfc 60px
+    );
+}
+
+body.dark-theme .room-code {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--bg-color),
+      var(--bg-color) 30px,
+      #1e293b 30px,   /* Мягкий темный шаг полос для ночной темы */
+      #1e293b 60px
+    );
+}
+
+.room-code-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.room-scene {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 650px;
+  /* background-color: #fafbfc; */
+  perspective: 1500px; /* Создает 3D-глубину для наклона */
+  perspective-origin: 50% 100%;
+
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  /* box-sizing: border-box; */
+}
+
+/* постеры на стене */
+.wall-posters {
+  position: absolute;
+  top: 60px;
+  right: 4%; /* Отступ всей группы постеров от правого края стены */
+
+  display: flex;
+  gap: 24px; /* Фиксированный зазор между картинами */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.wall-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Задаем базовый резиновый размер в пикселях */
+  width: 160px;
+  aspect-ratio: 1 / 1; /* Всегда идеальный квадрат */
+
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative; /* Нужно для позиционирования псевдоэлемента */
+}
+
+/* Наведение на постер (эффект одинаков для всех) */
+.wall-icon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e0;
+}
+
+.wall-icon-img {
+  width: 130px;
+  height: 130px;
+}
+
+.icon-codewars::before {
+  content: "";
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  width: 15%;
+  height: 15%;
+  max-width: 40px;
+  max-height: 40px;
+  background-color: #e2e8f0;
+
+  mask-image: url("../../icons/stack.svg#codewars");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  /* -webkit-mask-image: url("./codewars.svg");
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat; */
+  z-index: 2;
+}
+
+.icon-leetcode::before {
+  content: "";
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+  width: 15%;
+  height: 15%;
+  max-width: 40px;
+  max-height: 40px;
+  background-color: #e2e8f0;
+
+  mask-image: url("../../icons/stack.svg#leetcode");
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  /* -webkit-mask-image: url("./leetcode.svg");
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat; */
+  z-index: 2;
+}
+
+/* 1. Сначала отрабатывает планка 1100px */
+@media (max-width: 1100px) {
+  .wall-posters {
+    right: 2%;
+  }
+
+  .wall-icon {
+    width: 130px;
+  }
+
+  .wall-icon-img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .icon-codewars::before {
+    width: 10%;
+    height: 10%;
+  }
+}
+
+@media (max-width: 920px) {
+  .wall-icon {
+    width: 100px;
+  }
+
+  .wall-icon-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .icon-codewars::before {
+    bottom: 3%;
+    right: 3%;
+  }
+}
+
+/* стили обертки для адаптации сцены 3D */
+/* Базовые настройки обертки */
+.desk-scaler {
+  width: 1400px; /* В .desk-3d задаю такаю же ширину */
+  transform-origin: bottom center; /* Прижимаю к низу и центрирую */
+  transform-style: preserve-3d;
+
+  will-change: transform; /* для FireFox */
+  transform: translateZ(0); /* для FireFox */
+  /* Говорит Firefox сглаживать края при 3D-трансформациях */
+  backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden; */
+
+  z-index: 2;
+  pointer-events: none; /* отключаю клики */
+}
+
+.desk-3d {
+  position: relative;
+  width: 1400px;
+
+  transform-style: preserve-3d;
+  /* -webkit-transform-style: preserve-3d; */
+
+  will-change: transform; /* для FireFox */
+  transform: translateZ(0); /* для FireFox */
+
+  pointer-events: none;
+}
+
+/* Столешница и ящики */
+/* Столешница */
+.table-top-plane {
+  width: 100%;
+  height: 200px; /* Глубина внутрь экрана */
+  background-color: var(--wood-top);
+  border: 2px solid var(--wood-front);
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  /* Наклон крышки назад для создания плоскости */
+  transform: rotateX(68deg);
+  transform-origin: bottom;
+  transform-style: preserve-3d;
+  position: relative;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.05);
+
+  /* Говорит Firefox сглаживать края при 3D-трансформациях */
+  backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden; */
+}
+
+/* Толщина столешницы через псевдоэлемент */
+.table-top-plane::after {
+  content: "";
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+
+  width: 100%;
+  height: 16px; /* Толщина */
+
+  background-color: var(--wood-front);
+  border: 2px solid var(--wood-dark);
+  border-top: none;
+  box-sizing: border-box;
+
+  transform-origin: top center;
+  transform: rotateX(-68deg);
+}
+
+/* Фасад */
+.table-front-side {
+  width: 96%;
+  margin: 0 auto;
+  height: 140px; /* Высота стола от пола */
+  position: relative;
+  margin-top: -2px; /* Перекрытие микрозазоров верстки */
+  transform-style: preserve-3d; /* для Firefox */
+}
+
+/* Ящики */
+.drawers-section {
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  right: 24px;
+  height: 48px;
+  display: flex;
+  gap: 8px;
+  transform-style: preserve-3d; /* для Firefox */
+  pointer-events: auto; /* разрешаю клики */
+}
+
+.drawer-housing {
+  flex: 1;
+  height: 100%;
+  background-color: #483526; /* Тень внутри стола при выдвижении */
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 0 0 4px 4px;
+}
+
+.drawer-door {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--drawer-color);
+  border: 2px solid var(--wood-front);
+  border-top: none;
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.handle-bar {
+  width: 30px;
+  height: 5px;
+  background-color: #4a5568;
+  border-radius: 2px;
+}
+
+/* Анимация: ящик типа выезжает */
+.drawer-door:hover {
+  cursor: pointer;
+  transform: translateY(12px) scale(1.02);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Портретная рамка */
+.photo-frame-wrapper {
+  position: absolute;
+  left: 18%;
+  bottom: 75px;
+
+  transform: translateX(-50%) rotateY(0deg) rotateX(-60deg) translateZ(20px);
+  transform-origin: bottom center;
+  z-index: 7;
+
+  /* Тень от рамки - криво */
+  filter: drop-shadow(-2px 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.photo-frame {
+  width: 240px;
+  height: 270px;
+
+  background-color: #e2e5e9;
+  border: 1px solid #d3d7dd;
+  padding: 3px;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+.photo-placeholder img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%); /* Перевел в ч/б */
+}
+
+/* компьютер */
+.mac-case-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 105px;
+  transform: translateX(-50%) rotateX(-70deg);
+
+  transform-origin: bottom center; /* позиционирую на столешнице */
+  /* transform-style: preserve-3d; */
+
+  z-index: 10;
+
+  filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.2)); /* мягкая тень */
+
+  pointer-events: auto;
+}
+
+/* корпус Mac 128K */
+.mac-case {
+  margin: 0 auto;
+  width: 320px;
+  height: 440px;
+  background-color: #ded5c6;
+  border-radius: 24px 24px 12px 12px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 3px 5px rgba(255, 255, 255, 0.5); /* тень вокруг Мака */
+  padding: 25px 25px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  isolation: isolate; /* для FireFox - изолировал элемент, что бы не ломался рендеринг из-за анимации текста на экране */
+
+  transform-style: preserve-3d;
+  /* -webkit-transform-style: preserve-3d; */
+}
+
+/* Выемка под экран */
+.screen-bezel {
+  width: 100%;
+  height: 230px;
+  background-color: #cbbfae;
+  border-radius: 16px;
+  border: 3px solid #baa996;
+  box-shadow: inset 0 5px 12px rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* отсекаю анимацию текста выходящую за границы экрана */
+}
+
+/* Монитор */
+.mac-screen {
+  width: 90%;
+  height: 86%;
+  background-color: #d1cfc7;
+  border-radius: 10px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease;
+}
+
+/* Экран гаснет при перезагрузке */
+.mac-screen.reboot {
+  background-color: #111111 /*!important*/;
+}
+
+/* Текстура экрана и пиксельная сетка */
+.mac-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.04));
+  z-index: 5;
+  background-size: 100% 4px, 4px 100%;
+}
+
+/* контейнер без скролла */
+.editor-content {
+  color: #1a1a1a;
+  font-family: "VT323", monospace;
+  font-size: 21px;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+
+  /* 1. Изолируем слой для GPU (фиксит артефакты в Firefox) */
+  transform: translateZ(0);
+  will-change: transform;
+
+  transition: opacity 0.1s ease, transform 0.2s ease-out;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.editor-content div:first-child {
+  margin-top: auto;
+}
+
+/* анимация строк */
+.editor-content div {
+  animation: lineAppear 0.2s ease-out forwards;
+}
+
+@keyframes lineAppear {
+  from {
+    opacity: 0;
+    transform: translateY(5px); /* Строка появляется снизу */
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Черный мигающий курсор */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background-color: #1a1a1a;
+  animation: blink 0.8s infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Дисковод */
+.floppy-drive {
+  width: 140px;
+  height: 10px;
+  background-color: #4a453d;
+  margin-top: 35px;
+  border-radius: 2px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  /* transform: translateZ(2px); */
+}
+
+.floppy-drive:hover {
+  background-color: #5c564c;
+  transform: scale(1.02);
+  /* transition: background-color 0.2s, transform 0.1s; */
+  /* transform: translateZ(2px) scale(1.02); */
+}
+
+.floppy-drive:active {
+  transform: scale(0.97);
+  /* transform: translateZ(2px) scale(0.97); */
+}
+
+.floppy-drive::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 3px;
+  width: 12px;
+  height: 4px;
+  background-color: #2b2824;
+}
+
+.floppy-tip {
+  position: absolute;
+  bottom: 55px;
+  font-size: 11px;
+  color: #7a7164;
+  font-family: "VT323", monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mac-case:hover .floppy-tip {
+  opacity: 1;
+}
+
+.mac-logo {
+  position: absolute;
+  left: 30px;
+  bottom: 50px;
+  width: 4px;
+  height: 2px;
+  background: transparent;
+
+  /* Типа монохромное силуэтное яблоко по координатам (X Y Цвет) */
+  box-shadow:
+    /* Листик сверху */
+    4px 0 #4a453d,
+    6px -2px #4a453d,
+    /* Верхняя часть яблока */
+    2px 4px #4a453d,
+    4px 4px #4a453d,
+    8px 4px #4a453d,
+    10px 4px #4a453d,
+    /* Середина и «укус» справа */
+    0 6px #4a453d,
+    2px 6px #4a453d,
+    4px 6px #4a453d,
+    6px 6px #4a453d,
+    8px 6px #4a453d,
+    0 8px #4a453d,
+    2px 8px #4a453d,
+    4px 8px #4a453d,
+    6px 8px #4a453d,
+    0 10px #4a453d,
+    2px 10px #4a453d,
+    4px 10px #4a453d,
+    6px 10px #4a453d,
+    8px 10px #4a453d,
+    /* Нижняя часть */
+    2px 12px #4a453d,
+    4px 12px #4a453d,
+    6px 12px #4a453d,
+    8px 12px #4a453d,
+    4px 14px #4a453d,
+    6px 14px #4a453d;
+}
+
+/* Клавиатура */
+.keyboard {
+  position: absolute;
+  left: 50%;
+  bottom: 45px;
+
+  /* Центрирую клавиатуру на плоскость стола */
+  transform: translateX(-50%);
+
+  /* Размеры корпуса клавиатуры */
+  width: 300px;
+  background-color: #f3f4f6; /* Светло-серый пластик в тон ящиков/Mac */
+  border: 2px solid #cd9b6d; /* Контур */
+  border-radius: 4px;
+  padding: 4px;
+
+  /* Сетка рядов клавиш */
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  /* Небольшая объемная тень под клавиатурой */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+/* Ряды клавиш */
+.key-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 3px;
+}
+
+/* Сама клавиша */
+.key {
+  flex: 1;
+  height: 8px; /* Небольшая высота (скорей ширина) клавиш */
+  background-color: #ffffff;
+  border-radius: 1.5px;
+  border-bottom: 1.5px solid #cbd5e0; /* Имитация объема клавиши */
+}
+
+/* Специальный стиль для пробела */
+.key.spacebar {
+  flex: 5;
+}
+
+/* Чошка кофе */
+.coffee-cup-wrapper {
+  position: absolute;
+  left: 67%;
+  bottom: 65px;
+
+  transform: translateX(-50%) rotateX(-60deg) translateZ(10px);
+  transform-origin: bottom center;
+  z-index: 6;
+
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+.coffee-cup-wrapper::before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(60deg);
+  width: 26px;
+  height: 12px;
+  background-color: rgba(0, 0, 0, 0.12); /* Цвет тени */
+  border-radius: 50%; /* Круглая мягкая тень */
+  filter: blur(3px); /* Легкое размытие (внутри псевдоэлемента оно безопасно) как я понял для Firefox filter: blur - очень критично */
+  pointer-events: none;
+}
+
+/* Контейнер для пара, висящий прямо над чашкой */
+.steam-container {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 18px;
+  height: 25px;
+  /* Разрешаю пару двигаться в 3D-пространстве стола вверх */
+  transform-style: preserve-3d;
+  isolation: isolate;
+}
+
+/* Общие стили для полосок пара */
+.steam-line {
+  width: 3px; /* было 2 стало 3 */
+  height: 100%;
+  /* Мягкий полупрозрачный белый/серый цвет дыма */
+  background: linear-gradient(to top, rgba(226, 232, 240, 0.7), rgba(255, 255, 255, 0));
+  border-radius: 2px;
+
+  opacity: 0;
+
+  /* ИСПРАВЛЕНИЕ 2: Отключаем прорисовку задней стороны (экономит ресурсы) */
+  backface-visibility: hidden;
+
+  /* ИСПРАВЛЕНИЕ 3: Говорим браузеру выделить отдельный слой для анимации */
+  will-change: transform, opacity;
+}
+
+/* Разная задержка (delay) для каждой струйки, чтобы они двигались хаотично */
+.line-1 {
+  animation: steam-rise 2.5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.line-2 {
+  animation: steam-rise 2.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.line-3 {
+  animation: steam-rise 2.5s ease-in-out infinite;
+  animation-delay: 1.6s;
+}
+
+/* Анимация пара */
+@keyframes steam-rise {
+  0% {
+    /* Пар только зарождается */
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+
+  30% {
+    /* Пар становится видимым и начинает покачиваться влево */
+    opacity: 0.6;
+    transform: translateY(-5px) translateX(-2px) scaleX(1.2);
+  }
+
+  60% {
+    /* Пар поднимается выше и уходит вправо */
+    opacity: 0.4;
+    transform: translateY(-15px) translateX(3px) scaleX(0.9);
+  }
+
+  100% {
+    /* Полностью растворяется в воздухе на высоте */
+    transform: translateY(-25px) translateX(0) scaleX(0.7);
+    opacity: 0;
+  }
+}
+
+/* Корпус чашки */
+.coffee-cup {
+  width: 72px;
+  height: 84px;
+  background-color: #f8f9fa;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  /* overflow: hidden; Чтобы кофе не выливался за края */
+}
+
+/* Кофе внутри чашки */
+.coffee-liquid {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 6px); /* Подстраиваю под высоту чашки */
+  background-color: #5c4033;
+  border-top: 1.5px solid #4a3329;
+
+  border-radius: 0 0 8px 8px;
+}
+
+/* Ручка чашки */
+.cup-handle {
+  position: absolute;
+  right: -12px;
+  top: 18px;
+  width: 23px;
+  height: 50px;
+  border: 2px solid #cbd5e0;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Стопка книг */
+.giant-book-stack {
+  position: absolute;
+  left: 80%;
+  bottom: 90px;
+  width: 180px;
+
+  transform: rotateX(-68deg) translateZ(5px);
+  transform-origin: bottom center;
+  z-index: 5;
+  transform-style: preserve-3d;
+
+  /* Единый флекс-бокс, чтобы книги складывались друг на друга снизу вверх */
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px; /* Небольшой зазор между книгами */
+
+  filter: drop-shadow(4px 8px 6px rgba(0, 0, 0, 0.15));
+}
+
+/* Общий стиль для толстой книги */
+.mega-book {
+  width: 100%;
+  height: 28px;
+
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+
+  /* Шрифт для названий на корешках */
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* Нижняя книга (JS) */
+.js-book {
+  background-color: #f59e0b;
+  color: #ffffff;
+  border-bottom: 3px solid #d97706;
+  transform: none;
+}
+
+/* Средняя книга (CSS) */
+.css-book {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border-bottom: 3px solid #2563eb;
+  transform: none;
+}
+
+/* Верхняя книга (HTML) */
+.html-book {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-bottom: 3px solid #dc2626;
+  transform: none;
+}
+
+/* СЕТКА АДАПТИВНОСТИ */
+@media (max-width: 1400px) {
+  .room-scene {
+    height: 590px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.85); /* Сжимаю до 85% */
+  }
+}
+
+@media (max-width: 1215px) {
+  .room-scene {
+    height: 510px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.7); /* Сжимаю до 70% */
+  }
+}
+
+@media (max-width: 1015px) {
+  .room-scene {
+    height: 460px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.6); /* Сжимаю до 60% */
+  }
+}
+
+@media (max-width: 850px) {
+  .room-scene {
+    height: 430px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.55); /* Сжимаю до 55% */
+  }
+}
+
+/* ПОСЛЕ 768 НАДО БУДЕТ ОСТАВЛЯТЬ ТОЛЬКО МАС НА ВСЮ ШИРИНУ ВЬЮПОРТА.
+Т.К. ЕСЛИ СОХРАНЯТЬ ВСЕ ПРИМЕРЫ КОДА БУДЕТ НЕВОЗМОЖНО ПОСМОТРЕТЬ */
+
+@media (max-width: 748px) {
+  .wall-posters {
+    right: 7%;
+    flex-direction: column;
+  }
+
+  .desk-scaler {
+    transform: scale(0.45); /* Сжимаю до 45% */
+  }
+
+  .photo-frame-wrapper,
+  .coffee-cup-wrapper,
+  .giant-book-stack {
+    display: none;
+  }
+
+  .mac-case-wrapper {
+    left: 35%;
+  }
+
+  .mac-case {
+    width: 820px;
+    height: 540px;
+  }
+
+  .screen-bezel {
+    height: 430px;
+  }
+
+  .editor-content {
+    font-size: 41px;
+  }
+
+  .keyboard {
+    width: 700px;
+    left: 35%;
+  }
+}
+
+@media (max-width: 660px) {
+  .wall-posters {
+    right: 14%;
+  }
+
+  .wall-icon {
+    width: 80px;
+  }
+
+  .wall-icon img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .room-scene {
+    height: 360px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.4); /* Сжимаю до 40% */
+  }
+}
+
+@media (max-width: 585px) {
+  .wall-posters {
+    top: 30px;
+    right: 15%;
+  }
+
+  .wall-icon {
+    width: 60px;
+  }
+
+  .wall-icon img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .room-scene {
+    height: 290px;
+  }
+
+  .desk-scaler {
+    transform: scale(0.35); /* Сжимаю до 35% */
+  }
+}
+
+@media (max-width: 520px) {
+  .wall-posters {
+    display: none;
+  }
+
+  .desk-scaler {
+    transform: scale(0.25); /* Сжимаю до 25% */
+  }
+
+  .mac-case-wrapper {
+    left: 50%;
+  }
+
+  .mac-case {
+    width: 1120px;
+    height: 740px;
+  }
+
+  .screen-bezel {
+    height: 630px;
+  }
+
+  .editor-content {
+    font-size: 61px;
+  }
+
+  .keyboard {
+    left: 50%;
+  }
+}
