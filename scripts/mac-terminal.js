@@ -1,4 +1,6 @@
-var l=[`Task: Unpacking Arguments
+var l=[`
+  Insert a disk to see code examples
+  `,`Task: Unpacking Arguments
 programming language: JavaScript
 
 function
