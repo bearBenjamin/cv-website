@@ -1,4 +1,7 @@
 const diskFiles = [
+  `
+  Insert a disk to see code examples
+  `,
   `Task: Unpacking Arguments
 programming language: JavaScript
 

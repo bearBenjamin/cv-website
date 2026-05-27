@@ -1800,6 +1800,7 @@ body.dark-theme .room-code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.25em;
   padding: 1.5em 0;
   cursor: pointer;
   list-style: none; /* Убираем дефолтную стрелочку в современных браузерах */
