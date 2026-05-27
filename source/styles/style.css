@@ -85,6 +85,8 @@ body {
   line-height: 1.6;
   color: var(--text-main);
   background-color: var(--bg-color);
+  /* outline: 1px solid rgba(255, 0, 0, 0.2); */
+  box-sizing: border-box;
 
   /* transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; */
 }
@@ -1636,7 +1638,7 @@ body.dark-theme .room-code {
   }
 
   .desk-scaler {
-    transform: scale(0.55); /* Сжимаю до 55% */
+    transform: scale(0.53); /* Сжимаю до 55% */
   }
 }
 
@@ -1735,7 +1737,7 @@ body.dark-theme .room-code {
   }
 
   .desk-scaler {
-    transform: scale(0.25); /* Сжимаю до 25% */
+    transform: scale(0.22); /* Сжимаю до 22% */
   }
 
   .mac-case-wrapper {
@@ -1757,5 +1759,250 @@ body.dark-theme .room-code {
 
   .keyboard {
     left: 50%;
+  }
+}
+
+/* секция Portfolio */
+.portfolio-section {
+  width: 100%;
+  padding: 4em 2em;
+  background-color: var(--bg-color);
+}
+
+/* .portfolio-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+} */
+
+.portfolio-title {
+  margin: 0;
+  margin-bottom: 2.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-title);
+  letter-spacing: -0.03em;
+}
+
+.accordion {
+  border-top: 1px solid var(--border-color);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border-color);
+  display: block;
+}
+
+/* Шапка аккордеона (summary) */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em 0;
+  cursor: pointer;
+  list-style: none; /* Убираем дефолтную стрелочку в современных браузерах */
+  font-family: "JetBrains Mono", monospace;
+  transition: opacity 0.2s ease;
+}
+
+/* Убираем дефолтную стрелочку summary в браузерах Safari / старых Chrome */
+.accordion-header::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-header:hover {
+  opacity: 0.7;
+}
+
+.project-name {
+  font-size: 1.13rem;
+  font-weight: 500;
+  color: var(--text-title);
+  flex: 1;
+}
+
+.project-tags {
+  font-size: var(--font-size-sm);
+  color: var(--text-main);
+  margin-right: 2.5em;
+}
+
+/* Иконка плюсика */
+.accordion-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: "";
+  position: absolute;
+  background-color: var(--text-main);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.accordion-icon::before {
+  top: 7px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+.accordion-icon::after {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 100%;
+}
+
+/* === ВНУТРЕННИЙ КОНТЕНТ ПРОЕКТА === */
+.accordion-content {
+  padding-bottom: 1.5rem;
+  /* Плавное проявление контента при открытии */
+  animation: fade-in 0.3s ease-out;
+}
+
+.project-description {
+  font-family: "Inter", sans-serif;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  max-width: 100rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-link,
+.btn-more-projects {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.81rem;
+  text-decoration: none;
+  color: var(--text-title);
+  padding: 0.38em 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-link:hover,
+.btn-more-projects:hover {
+  background-color: rgba(15, 23, 42, 0.04);
+  border-color: var(--text-title);
+}
+
+body.dark-theme .btn-link:hover,
+body.dark-theme .btn-more-projects:hover {
+  background-color: rgba(248, 250, 252, 0.05);
+}
+
+.portfolio-actions {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.btn-more-projects {
+  margin: 0;
+}
+
+.accordion-item[open] .accordion-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+/* Анимация плавного проявления текста */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Объединяем стили для обеих кнопок управления */
+.btn-more-projects,
+.btn-less-projects {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.81rem;
+  text-decoration: none;
+  color: var(--text-title);
+  padding: 0.38em 1em;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  margin: 0 0.5em; /* Небольшой горизонтальный зазор между кнопками */
+}
+
+.btn-more-projects:hover,
+.btn-less-projects:hover {
+  background-color: rgba(15, 23, 42, 0.04);
+  border-color: var(--text-title);
+}
+
+.btn-more-projects:disabled {
+  opacity: 0.25;
+  border-color: var(--border-color);
+  background-color: transparent;
+  color: var(--text-main);
+
+  pointer-events: none;
+}
+
+
+body.dark-theme .btn-more-projects:hover,
+body.dark-theme .btn-less-projects:hover {
+  background-color: rgba(248, 250, 252, 0.05);
+}
+
+/* Специальный класс для проявления скрытой кнопки */
+.btn-less-projects.is-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0 0.5em;
+  overflow: visible;
+  clip-path: none;
+  clip: auto;
+  white-space: normal;
+}
+
+/* media section Portfolio */
+@media (max-width: 768px) {
+  .accordion-header {
+    flex-direction: column;
+    align-items: flex-start; /* Выстраиваем имя и теги в стопку слева */
+    gap: 0.5em;
+    position: relative;
+    /* Оставляем справа пустое место под иконку плюса, чтобы текст на неё не налез */
+    padding-right: 2.5em;
+  }
+
+  .project-tags {
+    margin-right: 0; /* Обнуляем деструктивный жесткий маржин */
+    opacity: 0.6;
+  }
+
+  .accordion-icon {
+    position: absolute;
+    right: 0;
+    top: 1.5em; /* Центрируем по первой строке заголовка */
   }
 }
