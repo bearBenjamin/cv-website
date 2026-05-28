@@ -178,6 +178,4 @@ const clearList = () => {
   }, { once: true });
 };
 
-btnLess.addEventListener('click', clearList);
-
-export { showMore };
+export { showMore, clearList };
