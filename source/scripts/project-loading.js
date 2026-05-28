@@ -130,7 +130,7 @@ const initProjectsLoader = () => {
   }
 };
 
-btnMore.addEventListener('click', () => {
+const showMore = () => {
   initProjectsLoader();
   indexStart += 5;
   indexEnd += 5;
@@ -141,24 +141,12 @@ btnMore.addEventListener('click', () => {
 
   btnLess.classList.remove('visually-hidden');
   btnLess.classList.add('is-visible');
-});
+};
 
-btnLess.addEventListener('click', () => {
-  const allCurrentItems = accordion.querySelectorAll('.accordion-item');
-
-  if (allCurrentItems.length <= 5) {
-    return;
-  }
-
-  const firstDynamicItem = allCurrentItems[5];
-
-  if (firstDynamicItem) {
-    firstDynamicItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  for (let i = 5; i < allCurrentItems.length; i += 1) {
-    if (allCurrentItems[i]) {
-      allCurrentItems[i].remove();
+const onScrollEnd = (projectList) => {
+  for (let i = 5; i < projectList.length; i += 1) {
+    if (projectList[i]) {
+      projectList[i].remove();
     }
   }
 
@@ -169,5 +157,27 @@ btnLess.addEventListener('click', () => {
 
   btnLess.classList.remove('is-visible');
   btnLess.classList.add('visually-hidden');
+};
 
-});
+
+const clearList = () => {
+  const allCurrentItems = accordion.querySelectorAll('.accordion-item');
+
+  if (allCurrentItems.length <= 5) {
+    return;
+  }
+
+  const lastStaticItem = allCurrentItems[4];
+
+  if (lastStaticItem) {
+    lastStaticItem.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+
+  window.addEventListener('scrollend', () => {
+    onScrollEnd(allCurrentItems);
+  }, { once: true });
+};
+
+btnLess.addEventListener('click', clearList);
+
+export { showMore };
