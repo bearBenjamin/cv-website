@@ -2113,30 +2113,7 @@ body.dark-theme .slider-btn:hover {
 .certificate-list-container {
   width: 100%;
   max-width: 1020px;
-  overflow-x: auto;
-  scrollbar-width: auto;
-  /* scrollbar-gutter: stable; */
-  scrollbar-color: var(--border-color) rgba(15, 23, 42, 0.05);
-  scroll-behavior: smooth;
-}
-
-.certificate-list-container::-webkit-scrollbar {
-  display: block;
-  height: 6px;
-}
-
-.certificate-list-container::-webkit-scrollbar-track {
-  background-color: rgba(15, 23, 42, 0.05);
-  border-radius: 4px;
-}
-
-.certificate-list-container::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 4px;
-}
-
-.certificate-list-container::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-title);
+  overflow: hidden;
 }
 
 .certificate-list {
@@ -2151,13 +2128,13 @@ body.dark-theme .slider-btn:hover {
   justify-content: flex-start;
   gap: 1.25em;
   flex-wrap: nowrap;
+
+  transform: translateX(0);
+  transition: transform 0.3s ease-out;
 }
 
 .certificate-item {
   flex-shrink: 0;
-}
-
-.certificate-link {
   position: relative;
   display: block;
 
@@ -2165,7 +2142,7 @@ body.dark-theme .slider-btn:hover {
   aspect-ratio: 3 / 4;
 }
 
-.certificate-link::before {
+.certificate-item::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -2173,10 +2150,11 @@ body.dark-theme .slider-btn:hover {
 
   pointer-events: none;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
-.certificate-link:hover::before,
-.certificate-link.current::before {
+.certificate-item:hover::before,
+.certificate-item:has(.certificate-img.current)::before {
   opacity: 0;
 }
 
@@ -2226,10 +2204,5 @@ body.dark-theme .slider-btn:hover {
 
   .certificate-item {
     width: calc(50% - 0.63em);
-    scroll-snap-align: center;
-  }
-
-  .certificate-link {
-    width: 100%;
   }
 }
