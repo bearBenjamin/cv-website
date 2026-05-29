@@ -3,6 +3,7 @@ import './theme.js';
 import { initAnimatedQuote } from './quote.js';
 import { typeCode, changeDisk } from './mac-terminal.js';
 import { showMore, clearList } from './project-loading.js';
+import './certificate-slider.js';
 
 const floppy = document.getElementById('floppy');
 
