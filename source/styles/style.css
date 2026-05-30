@@ -78,6 +78,7 @@ html {
   height: 100%;
 }
 
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -2140,13 +2141,14 @@ body.dark-theme .slider-btn:hover {
 
   width: 240px;
   aspect-ratio: 3 / 4;
+  background-color: transparent;
 }
 
 .certificate-item::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
 
   pointer-events: none;
   transition: opacity 0.3s ease;
