@@ -296,26 +296,44 @@
               <span class="accordion-icon"></span>
             </summary>
             <div class="accordion-content">
-              <h4 class="project-description-title" data-i18n="project__description-title__02">Описание проекта: Лендинг музея Лувра</h4>
-              <p>Адаптивный (&laquo;резиновый&raquo;) одностраничный лендинг Лувра с фиксированными брейкпоинтами 1920px, 1024px, 768px, 420px и функционалом, реализованным через JavaScript.</p>
+              <h3 class="project-description-title" data-i18n="project__description-title__02">Описание проекта: Лендинг музея Лувра</h3>
+              <p class="project-description" data-i18n="project__description-text__02">Адаптивный (&laquo;резиновый&raquo;) одностраничный лендинг Лувра с фиксированными брейкпоинтами (1920px, 1024px, 768px, 420px). Верстка семантическая и валидная. Весь функционал реализован с использованием HTML, SASS, БЭМ и JavaScript.</p>
 
-              <h4>На странице реализована интерактивность через CSS:</h4>
+              <h4 class="project-description-subtitle" data-i18n="project__description-subtitle-1__02">Интерактивность и CSS:</h4>
               <ul>
-                <li>Плавная прокрутка по якорям.</li>
-                <li>Изменение стиля интерактивных элементов при наведении и по клику. Интерактивность включает в себя не только изменение внешнего вида курсора при помощи <code>cursor: pointer</code>, но и другие визуальные эффекты &mdash; изменение цвета фона или шрифта, плавное растягивание подчеркивания заголовка карточки на всю ширину в секции <em>Visiting</em>.</li>
-                <li>Параллакс.</li>
+                <li class="project-description" data-i18n="project__description-item-1__02"><strong>Навигация:</strong> реализована плавная прокрутка по якорям.</li>
+                <li class="project-description" data-i18n="project__description-item-2__02"><strong>Визуальные эффекты:</strong> при наведении и клике интерактивные элементы изменяют стиль (цвет иконок, цвет фона и шрифта). В секции <em>Visiting</em> реализовано плавное растягивание подчеркивания заголовка на всю ширину карточки.</li>
+                <li class="project-description" data-i18n="project__description-item-3__02"><strong>Параллакс:</strong> на сайте реализован эффект параллакс-смещения для создания глубины.</li>
               </ul>
 
-              <h4>Функционал, реализованный посредством JavaScript:</h4>
+              <h4 class="project-description-subtitle" data-i18n="project__description-subtitle-2__02">Функционал, реализованный посредством JavaScript:</h4>
               <ul>
-                <li><strong>Бесконечный слайдер с репродукциями картин</strong> с возможностью перелистывания слайдов влево и вправо кликами по стрелкам. Также навигация по слайдам осуществляется через буллеты пагинации. Буллет активного слайда подсвечивается. Слайды перелистываются плавно, с анимацией смещения вправо или влево и изменением номера активного слайда.</li>
-                <li><strong>Бесконечный слайдер в секции Video.</strong> Навигация организована аналогично слайдеру с репродукциями картин. При клике по кнопке <em>Play</em> в центре слайда проигрывается видео. При клике по кнопке <em>Pause</em> воспроизведение останавливается. Также видео останавливается, если кликнуть по кнопке <em>Play</em> другого слайда: воспроизведение текущего прекращается, а новое проигрывается. То есть невозможно запустить несколько видео одновременно. Перелистывание слайдов посредством кнопок навигации или буллетов пагинации остановит воспроизведение видео. При перелистывании также меняется основное видео в проигрывателе. Если основное видео в этот момент проигрывалось, оно останавливается.</li>
-                <li><strong>Реализован кастомный плеер.</strong> При клике по кнопке <em>Play</em> начинается воспроизведение, иконка кнопки меняется на <em>Pause</em>. Большая кнопка по центру видео исчезает. Повторный клик по кнопке останавливает проигрывание видео, иконка меняется на первоначальную, большая кнопка <em>Play</em> по центру видео снова отображается. Прогресс-бар отображает прогресс проигрывания видео, реализована возможность изменить время, с которого проигрывается видео, посредством перетягивания ползунка. Реализовано включение/выключение звука кликом по кнопке звука и изменение самой иконки. При нажатии на кнопку <em>Fullscreen</em> видео переходит в полноэкранный режим, при этом видео и панель управления разворачиваются во весь экран. При повторном нажатии видео выходит из полноэкранного режима.</li>
-                <li><strong>Реализован слайдер сравнения изображений</strong> (&laquo;было/стало&raquo;).</li>
-                <li><strong>Реализована разовая анимация изображений</strong> в секции <em>Gallery</em> при прокрутке страницы.</li>
-                <li><strong>Калькулятор продажи билетов в секции Tickets.</strong> При изменении количества билетов <em>Basic</em> и <em>Senior</em> пересчитывается общая цена за них.</li>
-                <li><strong>Калькулятор продажи билетов в форме продажи билетов.</strong> Калькуляторы продажи связаны между собой, и при открытии калькулятора в модальном окне форма уже содержит данные, указанные на странице сайта &mdash; количество билетов, их тип, общую цену за них. В форме продажи билетов нельзя выбрать дату в прошлом. Поля формы (слева) и поля билета (справа) в модальном окне связаны. Изменение количества билетов в форме меняет количество билетов и общую стоимость в билете (справа). Осуществляется валидация полей формы.</li>
-                <li><strong>В секции Contacts подключена интерактивная карта</strong>, на которой отображаются маркеры. Карта подключена с помощью библиотеки <em>Leaflet</em>.</li>
+                <li class="project-description" data-i18n="project__description-item-4__02"><strong>Слайдер с репродукциями (Welcome):</strong> бесконечная карусель с навигацией через стрелки и буллеты. Слайды меняются плавно с анимацией смещения, активный буллет подсвечивается.</li>
+                <li class="project-description" data-i18n="project__description-item-5__02"><strong>Видео-секция:</strong> реализован бесконечный слайдер видео-роликов. При клике на <em>Play</em> воспроизводится видео внутри слайда. При переключении на другой слайд текущее видео автоматически останавливается, запуская новый ролик (невозможно воспроизведение нескольких видео одновременно). Навигация (стрелки, буллеты) останавливает воспроизведение. При смене слайда меняется основное видео в кастомном плеере.</li>
+                <li class="project-description" data-i18n="project__description-item-6__02"><strong>Кастомный видеоплеер:</strong> полностью управляемый JS-плеер.
+                  <ul>
+                    <li class="project-description" data-i18n="project__description-item-7__02">Кнопки <em>Play/Pause</em> (на панели и по центру) управляют воспроизведением.</li>
+                    <li class="project-description" data-i18n="project__description-item-8__02">Прогресс-бар позволяет перематывать видео. При перетаскивании в конец видео останавливается.</li>
+                    <li class="project-description" data-i18n="project__description-item-9__02">Кнопка громкости переключает звук и меняет иконку (активная/неактивная).</li>
+                    <li class="project-description" data-i18n="project__description-item-10__02">Кнопка <em>Fullscreen</em> разворачивает видео и панель управления во весь экран.</li>
+                  </ul>
+                </li>
+                <li class="project-description" data-i18n="project__description-item-11__02"><strong>Слайдер сравнения (Explore):</strong> реализован интерактивный ползунок <em>«Было/Стало»</em>, который ограничен границами изображения и плавно открывает нижний слой.</li>
+                <li class="project-description" data-i18n="project__description-item-12__02"><strong>Галерея (Gallery):</strong> реализована разовая анимация появления изображений при прокрутке (эффект «выплывания» снизу вверх).</li>
+                <li class="project-description" data-i18n="project__description-item-13__02"><strong>Калькулятор билетов (секция Tickets):</strong>
+                  <ul>
+                    <li class="project-description" data-i18n="project__description-item-14__02">Пересчет стоимости происходит при изменении количества билетов <em>Basic</em> и <em>Senior</em>.</li>
+                  </ul>
+                </li>
+                <li class="project-description" data-i18n="project__description-item-15__02"><strong>Форма покупки (модальное окно):</strong>
+                  <ul>
+                    <li class="project-description" data-i18n="project__description-item-16__02">Связка между формой и секцией реализована через состояние (state): при открытии модального окна подставляются текущие данные из секции Ticket страницы.</li>
+                    <li class="project-description" data-i18n="project__description-item-17__02">Валидация: проверка имени (3-15 символов), email, телефона (цифры), поля карты. При ошибках подсвечиваются границы.</li>
+                    <li class="project-description" data-i18n="project__description-item-18__02">Ограничения: выбор даты начинается с текущей, время выбирается с шагом 30 минут (с учетом текущего времени) с 9:00 до 18:00.</li>
+                    <li class="project-description" data-i18n="project__description-item-19__02">Синхронизация: поля в форме (слева) отображаются в макете билета (справа).</li>
+                  </ul>
+                </li>
+                <li class="project-description" data-i18n="project__description-item-20__02"><strong>Контакты:</strong> в секцию интегрирована интерактивная карта <em>Leaflet</em> с маркерами.</li>
               </ul>
 
               <div class="project-links">
@@ -334,9 +352,39 @@
               <span class="accordion-icon"></span>
             </summary>
             <div class="accordion-content">
-              <p class="project-description" data-i18n="project-description-03">
-                Одностраничный лендинг кофейного магазина
-              </p>
+              <div class="accordion-content">
+                <h3 class="project-description-title" data-i18n="project__description-title__03">Описание проекта: Адаптивный каталог товаров</h3>
+                <p class="project-description" data-i18n="project__description-text__03">Главная страница интернет-магазина с каталогом товаров и формой фильтрации. Проект выполнен с использованием сборки Gulp. Вёрстка семантическая, написана на SCSS без использования шаблонизаторов и JS-фреймворков с соблюдением методологии БЭМ.</p>
+
+                <h4 class="project-description-subtitle" data-i18n="project__description-subtitle-1__03">Адаптивность и сетка:</h4>
+                <ul>
+                  <li class="project-description" data-i18n="project__description-item-1__03">Реализован подход <strong>Mobile-First</strong>.</li>
+                  <li class="project-description" data-i18n="project__description-item-2__03">Заданы фиксированные брейкпоинты: мобильный (320px–767px), планшетный (768px–1439px) и десктоп (от 1440px).</li>
+                  <li class="project-description" data-i18n="project__description-item-3__03">Между точками перехода используется фиксированная ширина контента (без «резиновости»), при этом фоновые элементы растягиваются на всю ширину вьюпорта.</li>
+                  <li class="project-description" data-i18n="project__description-item-4__03">Реализован <strong>Sticky Footer</strong>: подвал прижат к нижней границе окна даже при малом количестве контента.</li>
+                </ul>
+
+                <h4>Графика и оптимизация:</h4>
+                <ul>
+                  <li class="project-description" data-i18n="project__description-item-5__03">Все изображения оптимизированы для Retina-дисплеев (ретинизация).</li>
+                  <li class="project-description" data-i18n="project__description-item-6__03">Использован векторный спрайт для иконок в шапке, преимуществах, кнопках и подвале.</li>
+                  <li class="project-description" data-i18n="project__description-item-7__03">Стилизация кастомных чек-боксов и радиокнопок.</li>
+                  <li class="project-description" data-i18n="project__description-item-8__03">Секция с картой реализована с использованием адаптивных изображений.</li>
+                </ul>
+
+                <h4 class="project-description-subtitle" data-i18n="project__description-subtitle-2__03">Интерактивность (JavaScript):</h4>
+                <ul>
+                  <li class="project-description" data-i18n="project__description-item-9__03"><strong>Мобильное меню:</strong> перекрывается поверх страницы (outside flow) и переключается при тапе.</li>
+                  <li class="project-description" data-i18n="project__description-item-10__03"><strong>Слайдер:</strong> Слайды переключаются без зацикливания, кнопки блокируются в крайних положениях. Для десктопной версии добавлена пагинация для перехода к конкретному слайду.</li>
+                  <li class="project-description" data-i18n="project__description-item-11__03"><strong>Форма фильтров и сортировки:</strong>
+                    <ul>
+                      <li class="project-description" data-i18n="project__description-item-12__03">Реализован диапазонный слайдер (price range) с помощью библиотеки <em>no-ui-slider</em>, привязанный к полю ввода.</li>
+                      <li class="project-description" data-i18n="project__description-item-13__03">Сортировка и фильтрация на клиенте не реализованы (предполагается приход данных с сервера).</li>
+                      <li class="project-description" data-i18n="project__description-item-14__03">Данные формы отправляются асинхронно на адрес эхо-сервера.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
               <div class="project-links">
                 <a class="btn-link" href="https://github.com/bearBenjamin/drink-coffee-shop" target="_blank" rel="noreferrer noopener">GitHub</a>
                 <a class="btn-link" href="https://bearbenjamin.github.io/drink-coffee-shop/" target="_blank" rel="noreferrer noopener">Live Demo</a>

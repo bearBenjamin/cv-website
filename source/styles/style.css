@@ -1868,9 +1868,14 @@ body.dark-theme .room-code {
   animation: fade-in 0.3s ease-out;
 }
 
+.project-description-title,
+.project-description-subtitle {
+  font-family: "JetBrains Mono", monospace;
+}
+
 .project-description {
   font-family: "Inter", sans-serif;
-  font-size: 0.94rem;
+  font-size: 1.04rem;
   line-height: 1.6;
   color: var(--text-main);
   margin-top: 0;
