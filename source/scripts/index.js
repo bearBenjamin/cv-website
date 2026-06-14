@@ -4,6 +4,7 @@ import { initAnimatedQuote } from './quote.js';
 import { typeCode, changeDisk } from './mac-terminal.js';
 import { showMore, clearList } from './project-loading.js';
 import './certificate-slider.js';
+import { initAccordion } from './accordion.js';
 
 const floppy = document.getElementById('floppy');
 
@@ -15,6 +16,7 @@ initAnimatedQuote();
 
 window.onload = typeCode;
 floppy.addEventListener('click', changeDisk);
-
 btnMore.addEventListener('click', showMore);
 btnLess.addEventListener('click', clearList);
+
+initAccordion();

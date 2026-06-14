@@ -1806,7 +1806,12 @@ body.dark-theme .room-code {
   cursor: pointer;
   list-style: none; /* Убираем дефолтную стрелочку в современных браузерах */
   font-family: "JetBrains Mono", monospace;
-  transition: opacity 0.2s ease;
+
+  text-shadow: none;
+  opacity: 1;
+  transform: translateY(0);
+
+  transition: text-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Убираем дефолтную стрелочку summary в браузерах Safari / старых Chrome */
@@ -1816,6 +1821,10 @@ body.dark-theme .room-code {
 
 .accordion-header:hover {
   opacity: 0.7;
+}
+
+.accordion-item.active .accordion-header:hover {
+  opacity: 0.5;
 }
 
 .project-name {
@@ -1844,7 +1853,7 @@ body.dark-theme .room-code {
   content: "";
   position: absolute;
   background-color: var(--text-main);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: transform 0.25s ease;
 }
 
 .accordion-icon::before {
@@ -1852,6 +1861,8 @@ body.dark-theme .room-code {
   left: 0;
   width: 100%;
   height: 2px;
+
+  transform: translateY(0);
 }
 
 .accordion-icon::after {
@@ -1859,6 +1870,12 @@ body.dark-theme .room-code {
   left: 7px;
   width: 2px;
   height: 100%;
+}
+
+.accordion-item.active .accordion-header {
+  text-shadow: 0.03em 0 var(--text-title), -0.03em 0 var(--text-title);
+  opacity: 1;
+  transform: translateY(1px);
 }
 
 /* === ВНУТРЕННИЙ КОНТЕНТ ПРОЕКТА === */
@@ -1926,6 +1943,10 @@ body.dark-theme .btn-more-projects:hover {
 .accordion-item[open] .accordion-icon::after {
   transform: rotate(90deg);
   opacity: 0;
+}
+
+.accordion-item[open] .accordion-icon::before {
+  transform: translateY(1px);
 }
 
 /* Анимация плавного проявления текста */
