@@ -40,7 +40,6 @@ const parseHtmlProjects = [...projects].map((project) => {
 
 
 const allProjects = [...parseHtmlProjects, ...additionalProjects];
-console.log('allProjects: ', allProjects);
 const length = allProjects.length;
 
 let indexStart = 5;
@@ -84,13 +83,6 @@ const initProjectsLoader = () => {
     divContent.classList.add('accordion-content');
 
     divContent.innerHTML = allProjects[i].content;
-
-    // const description = document.createElement('p');
-    // description.classList.add('project-description');
-    // description.dataset.i18n = `project__description__${String(i + 1).padStart(2, '0')}`;
-    // description.textContent = allProjects[i].description;
-
-    // divContent.append(description);
 
     const divLink = document.createElement('div');
     divLink.classList.add('project-links');
