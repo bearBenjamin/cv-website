@@ -1964,7 +1964,8 @@ body.dark-theme .btn-more-projects:hover {
 
 /* Объединяем стили для обеих кнопок управления */
 .btn-more-projects,
-.btn-less-projects {
+.btn-less-projects,
+.contact-form-btn {
   display: inline-block;
   font-family: "JetBrains Mono", monospace;
   font-size: 0.81rem;
@@ -1980,12 +1981,14 @@ body.dark-theme .btn-more-projects:hover {
 }
 
 .btn-more-projects:hover,
-.btn-less-projects:hover {
+.btn-less-projects:hover,
+.contact-form-btn:hover {
   background-color: rgba(15, 23, 42, 0.04);
   border-color: var(--text-title);
 }
 
-.btn-more-projects:disabled {
+.btn-more-projects:disabled,
+.contact-form-btn:disabled {
   opacity: 0.25;
   border-color: var(--border-color);
   background-color: transparent;
@@ -1996,7 +1999,8 @@ body.dark-theme .btn-more-projects:hover {
 
 
 body.dark-theme .btn-more-projects:hover,
-body.dark-theme .btn-less-projects:hover {
+body.dark-theme .btn-less-projects:hover,
+body.dark-theme .contact-form-btn:hover {
   background-color: rgba(248, 250, 252, 0.05);
 }
 
@@ -2234,3 +2238,132 @@ body.dark-theme .slider-btn:hover {
     width: calc(50% - 0.63em);
   }
 }
+
+/* section обратной связи */
+.contact-section {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 4em 2em;
+  background-color: var(--bg-color);
+  font-family: "Inter", sans-serif;
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Заголовки используют JetBrains Mono */
+.contact-title {
+  margin-bottom: 1.5rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--text-title);
+  text-align: center;
+}
+
+.filter-group-contact {
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 460px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.filter-group-contact .form-group {
+  width: 100%;
+  max-width: 480px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Метки полей из JetBrains Mono для ИТ-стилистики */
+.form-group label {
+  display: block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-size-sm);
+  color: var(--text-title);
+  margin-bottom: 0.5rem;
+}
+
+/* Инпуты и текстовое поле */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: var(--font-size-base);
+  color: var(--text-main);
+  background-color: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  height: 140px;
+  resize: vertical;
+}
+
+/* Интерактивное состояние при клике/фокусе */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--wood-front); /* Элемент деревянного декора как акцент */
+  box-shadow: 0 0 0 3px rgba(205, 155, 109, 0.15);
+}
+
+/* Кнопка отправки */
+.contact-form-btn-wrapper {
+  text-align: right;
+}
+
+/* .contact-form-btn {
+  display: inline-block;
+  color: var(--text-title);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  margin: 0.5em;
+  padding: 0.38em 1em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.81rem;
+  text-decoration: none;
+  transition: background-color 0.2s, border-color 0.2s, opacity 0.2s;
+  box-sizing: border-box;
+} */
+
+/* Эффект при наведении */
+/* .contact-form-btn:hover {
+  border-color: var(--wood-front); Используем ваш деревянный акцент для интерактивности
+  background-color: rgba(205, 155, 109, 0.05); Очень легкий налет акцентного цвета
+} */
+
+/* Состояние нажатия */
+/* .contact-form-btn:active {
+  transform: scale(0.98);
+} */
+
+/* Состояние блокировки во время отправки (JS) */
+/* .contact-form-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} */
+
+/* Сообщение об успешной отправке */
+.success-message {
+  font-family: "JetBrains Mono", monospace;
+  font-size: var(--font-size-md);
+  color: var(--text-title);
+  text-align: center;
+  padding: 2rem 0;
+}
+
