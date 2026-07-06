@@ -5,7 +5,7 @@ import { typeCode, changeDisk } from './mac-terminal.js';
 import { showMore, clearList } from './project-loading.js';
 import './certificate-slider.js';
 import { initAccordion } from './accordion.js';
-import '.contact-form.js';
+// import './contact-form.js';
 
 const floppy = document.getElementById('floppy');
 
