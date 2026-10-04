@@ -1,6 +1,6 @@
 import { initMenu } from './burger-menu.js';
 import './theme.js';
-import './hero.js';
+import { initHeroParallax } from './hero.js';
 import { initAnimatedQuote } from './quote.js';
 import { typeCode, changeDisk } from './mac-terminal.js';
 import { showMore, clearList } from './project-loading.js';
@@ -14,6 +14,7 @@ const btnMore = document.querySelector('.btn-more-projects');
 const btnLess = document.querySelector('.btn-less-projects');
 
 initMenu();
+initHeroParallax();
 initAnimatedQuote();
 
 window.onload = typeCode;

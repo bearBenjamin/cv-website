@@ -1,32 +1,51 @@
+const PARAMS = {
+  speed: 0.5,
+  resizeDelay: 100,
+};
+
 const heroWrapper = document.querySelector('.hero-wrapper');
 const heroFadeLayer = document.querySelector('.hero-fade-layer');
-
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (heroWrapper && heroFadeLayer && !prefersReducedMotion) {
-  let heroHeight = window.innerHeight;
+// Храню высоту, которая будет обновляться при ресайзе
+let heroHeight = window.innerHeight;
+let resizeTimer = null;
 
-  let resizeTimer = null;
+// функция отрисовки кадра
+const updateHeroParallax = () => {
+  const scrollTop = window.scrollY;
 
-  const update = () => {
-    const scrollTop = window.scrollY;
-    if (scrollTop <= heroHeight) {
-      const progress = scrollTop / heroHeight;
-      heroFadeLayer.style.opacity = progress.toFixed(3);
-      const yOffset = Math.round(scrollTop * 0.5);
-      heroWrapper.style.transform = `translate3d(0, ${yOffset}px, 0)`;
-    }
-  };
+  // Оптимизация: считаю математику только пока hero виден на экране
+  if (scrollTop > heroHeight) {
+    return;
+  }
 
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      heroHeight = window.innerHeight;
-      update();
-    }, 100);
-  });
+  const progress = scrollTop / heroHeight;
+  heroFadeLayer.style.opacity = progress.toFixed(3);
 
+  const yOffset = Math.round(scrollTop * PARAMS.speed);
+  heroWrapper.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+};
 
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-}
+// Обработчик изменения размеров окна (Debounce)
+const handleResize = () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    heroHeight = window.offsetHeight;
+    updateHeroParallax();
+  }, PARAMS.resizeDelay);
+};
+
+const initHeroParallax = () => {
+  if (!heroWrapper || !heroFadeLayer || prefersReducedMotion) {
+    return;
+  }
+
+  window.addEventListener('resize', handleResize);
+  window.addEventListener('scroll', updateHeroParallax, { passive: true });
+
+  // Первичный запуск, чтобы установить верные координаты при загрузке страницы
+  updateHeroParallax();
+};
+
+export { initHeroParallax };
