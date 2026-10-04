@@ -123,8 +123,12 @@ body.no-scroll {
 
 /* стили Header */
 .main-header {
+  width: 100%;
+  position: fixed;
+  z-index: 4;
   padding-right: var(--font-size-md);
   padding-left: var(--font-size-md);
+  background-color: var(--bg-color);
 }
 
 .header-wrapper {
@@ -375,7 +379,7 @@ body.dark-theme .btn-theme-toggle {
     left: 0;
     right: 0;
 
-    z-index: 3;
+    z-index: 4;
 
     background-color: var(--bg-color);
     width: auto;
@@ -411,14 +415,51 @@ body.dark-theme .btn-theme-toggle {
 
 /* стили секции Hero */
 .hero {
-  padding: 8em var(--font-size-md) 4em;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
   background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+.hero ~ section {
+  position: relative;
+  z-index: 3;
 }
 
 .hero-wrapper {
   display: flex;
+  width: 100%;
+  padding-right: var(--font-size-md);
+  padding-left: var(--font-size-md);
+  align-self: center;
   justify-content: center;
   gap: 2.5em;
+  will-change: transform;
+}
+
+.hero-fade-layer {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-color);
+  opacity: 0;
+  z-index: 2;
+  will-change: opacity;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-wrapper {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .hero-fade-layer {
+    opacity: 0 !important;
+    will-change: auto;
+  }
 }
 
 .hero-avatar {

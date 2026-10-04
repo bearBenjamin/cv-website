@@ -2,7 +2,7 @@
   "name": "cozy-house",
   "version": "1.0.0",
   "private": true,
-  "description": "Учебный проект Cozy House",
+  "description": "cv-website",
   "type": "module",
   "engines": {
     "node": "^18.18 || ^20.9"

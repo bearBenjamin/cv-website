@@ -1,10 +1,19 @@
 const quoteTarget = document.querySelector('.quote-section');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 const startAnimation = () => {
   const quoteTextElem = quoteTarget.querySelector('.quote-text');
   const quoteAuthorElem = quoteTarget.querySelector('.quote-author');
 
   if (!quoteTextElem) {
+    return;
+  }
+
+  if (reducedMotion.matches) {
+    quoteTextElem.style.visibility = '';
+    if (quoteAuthorElem) {
+      quoteAuthorElem.classList.add('is-visible');
+    }
     return;
   }
 
@@ -29,6 +38,8 @@ const startAnimation = () => {
     quoteTextElem.appendChild(span);
   });
 
+  quoteTextElem.style.visibility = '';
+
   // появлени автора цитаты
   setTimeout(() => {
     if (quoteAuthorElem) {
@@ -38,6 +49,19 @@ const startAnimation = () => {
 };
 
 const initAnimatedQuote = () => {
+  if (!quoteTarget) {
+    return;
+  }
+
+  const quoteTextElem = quoteTarget.querySelector('.quote-text');
+
+  if (quoteTextElem) {
+    quoteTextElem.style.visibility = 'hidden';
+  }
+
+  const viewportH = window.innerHeight || document.documentElement.clientHeight;
+  const threshold = quoteTarget.offsetHeight >= viewportH ? 0.8 : 1;
+
   const observer = new IntersectionObserver((entries, observerInstance) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -45,7 +69,7 @@ const initAnimatedQuote = () => {
         observerInstance.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold });
 
   observer.observe(quoteTarget);
 };
