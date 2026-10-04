@@ -452,11 +452,13 @@ body.dark-theme .btn-theme-toggle {
 
 @media (prefers-reduced-motion: reduce) {
   .hero-wrapper {
+    /* stylelint-disable-next-line declaration-no-important */
     transform: none !important;
     will-change: auto;
   }
 
   .hero-fade-layer {
+    /* stylelint-disable-next-line declaration-no-important */
     opacity: 0 !important;
     will-change: auto;
   }
@@ -572,7 +574,9 @@ body.dark-theme .btn-theme-toggle {
 
 /* секция Quote */
 .quote-section {
-  padding: 8rem 4em;
+  min-height: 50dvh;
+  display: flex;
+  align-items: center;
   background-color: var(--bg-color);
   box-sizing: border-box;
 }
