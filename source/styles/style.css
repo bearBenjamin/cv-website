@@ -200,7 +200,8 @@ body.no-scroll {
 }
 
 .header-link {
-  padding: 2em var(--font-size-md);
+  position: relative;
+  padding: 2em var(--font-size-lg);
   display: block;
 
   font-family: "JetBrains Mono", monospace;
@@ -211,9 +212,10 @@ body.no-scroll {
   transition: transform 0.2s ease;
 }
 
-.header-link:hover {
-  opacity: 1;
-  color: var(--text-title);
+.header-link:hover .link-stroke rect {
+  opacity: 0.6;
+  stroke: var(--text-title);
+  stroke-dasharray: 400px, 0;
 }
 
 .header-link:active {
@@ -222,10 +224,34 @@ body.no-scroll {
   opacity: 1;
 }
 
+.header-link:active .link-stroke rect {
+  stroke-dasharray: 0, 400px;
+  transition: none;
+}
+
 .header-link:focus-visible {
   outline: 2px solid var(--text-title);
   outline-offset: -4px;
   opacity: 1;
+}
+
+.link-stroke {
+  width: 100%;
+  height: 100%;
+  padding: 2em var(--font-size-base);
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+}
+
+.link-stroke rect {
+  width: 100%;
+  height: 100%;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-dasharray: 0, 400px;
+  transition: stroke-dasharray 0.6s ease-in-out;
 }
 
 .header-list-toggle {
