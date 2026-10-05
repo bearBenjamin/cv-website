@@ -1,0 +1,1 @@
+var t=()=>{if(window.matchMedia("(prefers-reduced-motion: reduce").matches)return;let e=document.createElement("link");e.rel="stylesheet",e.href="styles/3d-scene.css",document.head.appendChild(e)};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t):t();
