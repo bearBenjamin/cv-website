@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Сайт-визитка</title>
+  <link rel="preload" href="./fonts/JetBrainsMono/JetBrainsMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="./fonts/Inter/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="./fonts/VT323/VT323-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="./images/avatar@1x.webp" as="image" type="image/webp" imagesrcset="./images/avatar@1x.webp 1x, ./images/avatar@2x.webp 2x" fetchpriority="high">
   <link rel="stylesheet" href="./styles/style.css">
   <script src="./scripts/index.js" defer></script>
 </head>
@@ -146,12 +150,12 @@
           <ul class="wall-posters">
             <li>
               <a class="wall-icon icon-codewars" href="https://www.codewars.com/users/bearBenjamin" target="_blank" rel="noreferrer noopener" title="Мой Codewars">
-                <img class="wall-icon-img" src="./images/code/picture-one@1x.jpg" width="80" height="80" alt="art for programming">
+                <img class="wall-icon-img" src="./images/code/picture-one@1x.jpg" width="80" height="80" alt="art for programming" loading="lazy">
               </a>
             </li>
             <li>
               <a class="wall-icon icon-leetcode" href="https://leetcode.com/u/bearBenjamin/" target="_blank" rel="noreferrer noopener" title="Мой LeetCode">
-                <img class="wall-icon-img" src="./images/code/picture-two@1x.jpg" width="80" height="80" alt="art for programming">
+                <img class="wall-icon-img" src="./images/code/picture-two@1x.jpg" width="80" height="80" alt="art for programming" loading="lazy">
               </a>
             </li>
           </ul>
@@ -165,7 +169,7 @@
                   <div class="photo-frame">
                     <!-- Контейнер для фотографии -->
                     <div class="photo-placeholder">
-                      <img src="./images/code/autoportret@1x.jpg" width="90" height="120" alt="autoportret">
+                      <img src="./images/code/autoportret@1x.jpg" width="90" height="120" alt="autoportret" loading="lazy">
                     </div>
                   </div>
                 </div>

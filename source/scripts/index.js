@@ -2,6 +2,7 @@ import { initMenu } from './burger-menu.js';
 import './theme.js';
 import { initHeroParallax } from './hero.js';
 import { initAnimatedQuote } from './quote.js';
+import './three-d-scene-load.js';
 import { typeCode, changeDisk } from './mac-terminal.js';
 import { showMore, clearList } from './project-loading.js';
 import './certificate-slider.js';
@@ -17,7 +18,9 @@ initMenu();
 initHeroParallax();
 initAnimatedQuote();
 
-window.onload = typeCode;
+
+// window.onload = typeCode;
+document.addEventListener('DOMContentLoaded', typeCode);
 floppy.addEventListener('click', changeDisk);
 btnMore.addEventListener('click', showMore);
 btnLess.addEventListener('click', clearList);
