@@ -600,7 +600,7 @@ body.dark-theme .btn-theme-toggle {
 
 /* секция Quote */
 .quote-section {
-  min-height: 50dvh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   background-color: var(--bg-color);
@@ -696,7 +696,7 @@ body.dark-theme .btn-theme-toggle {
 /* секция Education */
 .education-section {
   width: 100%;
-  padding: 4em 1.25em 4rem;
+  padding: 4em 1.25em 10rem;
   background-color: var(--bg-color);
   box-sizing: border-box;
 }
