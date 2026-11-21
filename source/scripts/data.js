@@ -253,7 +253,9 @@ const additionalProjects = [
   }
 ];
 
-export { additionalProjects };
+const additionalCertificates = {};
+
+export { additionalProjects, additionalCertificates };
 
 
 /*

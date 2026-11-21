@@ -1139,20 +1139,27 @@ body.dark-theme .contact-form-btn:hover {
 
 .certificate-slider {
   width: 100%;
+  max-height: 700px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.25em;
+  justify-content: space-evenly;
+  gap: 5em;
 }
 
 .active-photo-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: 100%;
   max-width: 600px;
   gap: 1em;
+}
+
+.slider-btn-container {
+  width: 100%;
+  max-width: 160px;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .slider-btn {
@@ -1213,19 +1220,18 @@ body.dark-theme .slider-btn:hover {
 .active-photo {
   display: block;
   width: 100%;
-  max-width: 480px;
-  min-width: 0;
-  height: auto;
-  flex-shrink: 1;
-  aspect-ratio: 3 / 4;
-
+  height: 100%;
+  aspect-ratio: 1 / 1; /* резиновый квадратный контейнер */
   object-fit: contain;
 }
 
 .certificate-list-container {
   width: 100%;
-  max-width: 1020px;
+  max-width: 500px;
+  max-height: 700px;
+  padding-right: 80px; /* компенсирую отступы резинового контейнера активного слайда */
   overflow: hidden;
+  align-self: flex-start;
 }
 
 .certificate-list {
@@ -1234,25 +1240,18 @@ body.dark-theme .slider-btn:hover {
   list-style: none;
 
   width: 100%;
-  padding-bottom: 15px;
-
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25em;
-  flex-wrap: nowrap;
 
-  transform: translateX(0);
-  transition: transform 0.3s ease-out;
+  transform: translateY(0);
+  transition: transform 0.35s ease-out;
 }
 
 .certificate-item {
-  flex-shrink: 0;
   position: relative;
-  display: block;
-
-  width: 240px;
-  aspect-ratio: 3 / 4;
-  background-color: transparent;
+  display: grid;
+  place-items: center;
 }
 
 .certificate-item::before {
@@ -1275,49 +1274,10 @@ body.dark-theme .slider-btn:hover {
   display: block;
 
   width: 100%;
-  height: 100%;
+  max-width: 240px;
+  height: auto;
 
   object-fit: contain;
-}
-
-@media (max-width: 1084px) {
-  .certificate-list-container {
-    max-width: 760px;
-  }
-}
-
-@media (max-width: 824px) {
-  .certificate-list-container {
-    max-width: 500px;
-  }
-
-  .active-photo-container {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 564px) {
-  .certificate-slider {
-    height: auto;
-  }
-
-  .active-photo-container {
-    gap: 0.5em;
-  }
-
-  .slider-btn {
-    width: 32px;
-    height: 32px;
-  }
-
-  .certificate-list-container {
-    max-width: 100%;
-    scroll-snap-type: x mandatory;
-  }
-
-  .certificate-item {
-    width: calc(50% - 0.63em);
-  }
 }
 
 /* section обратной связи */
