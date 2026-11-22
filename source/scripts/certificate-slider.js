@@ -49,7 +49,7 @@ const updateGridPosition = () => {
   const rowGap = parseFloat(getComputedStyle(certificateList).rowGap) || GAP; // отступ между рядами
   const rowStep = itemHeight + rowGap; // высота одного ряда с отступом между рядами
 
-  listContainer.computedStyleMap.maxHeight = `${itemHeight * 2 + rowGap}px`; // высота видимой части контейнера с карточками - 2 ряда с отступом между ними
+  listContainer.style.maxHeight = `${itemHeight * 2 + rowGap}px`; // высота видимой части контейнера с карточками - 2 ряда с отступом между ними
 
   const currentRow = Math.floor(currentIndex / 2); // текущий ряд в котором выбрана карточка
   const totalRows = Math.ceil(certificatePhotos.lenght / 2); // всего рядов
