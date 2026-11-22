@@ -1277,6 +1277,7 @@ body.dark-theme .slider-btn:hover {
   height: auto;
 
   object-fit: contain;
+  aspect-ratio: 3 / 4; /* зарезервировал место под превью 240×320 до загрузки файла */
 }
 
 /* section обратной связи */
