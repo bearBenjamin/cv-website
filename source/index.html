@@ -584,27 +584,27 @@
     <section class="contact-section" id="write">
       <h2 class="contact-title">Связаться со мной</h2>
 
-      <form action="https://web3forms.com" method="POST" id="contact-form">
+      <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
 
         <!-- Ключ доступа (его нужно получить бесплатно на сайте web3forms.com) -->
-        <input type="hidden" name="access_key" value="ВАШ_ПОЛУЧЕННЫЙ_КЛЮЧ_ЗДЕСЬ">
+        <input type="hidden" name="access_key" value="fcb47a24-fecd-435d-bf84-f643663fe5dc">
 
         <fieldset class="filter-group-contact" aria-labelledby="fieldset-legend">
           <legend class="visually-hidden" id="fieldset-legend">Данные отправителя</legend>
           <div class="form-group">
             <label class="visually-hidden" for="name">Ваше имя:</label>
-            <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+            <input type="text" id="name" name="name" required minlength="2" maxlength="60" placeholder="Введите ваше имя">
           </div>
 
           <div class="form-group">
             <label class="visually-hidden" for="email">Ваш Email для связи:</label>
-            <input type="email" id="email" name="email" required placeholder="Введите ваш email">
+            <input type="email" id="email" name="email" required maxlength="100" placeholder="Введите ваш email">
           </div>
         </fieldset>
 
         <div class="form-group">
           <label class="visually-hidden" for="message">Сообщение:</label>
-          <textarea id="message" name="message" required placeholder="Напишите мне..."></textarea>
+          <textarea id="message" name="message" required minlength="10" maxlength="2000" placeholder="Напишите мне..."></textarea>
         </div>
 
         <!-- Защита от спама (капча-невидимка) -->
@@ -613,6 +613,7 @@
 
         <div class="contact-form-btn-wrapper">
           <button class="contact-form-btn" type="submit">Отправить сообщение</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
         </div>
       </form>
     </section>
