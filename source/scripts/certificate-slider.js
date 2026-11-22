@@ -1,18 +1,79 @@
+import { additionalCertificates } from './data.js';
+const GAP = 20;
+
 const certificateSection = document.querySelector('.certificate-section');
 const activePhoto = certificateSection.querySelector('.active-photo');
+const listContainer = certificateSection.querySelector('.certificate-list-container');
 const certificateList = certificateSection.querySelector('.certificate-list');
-const certificatePhotos = Array.from(certificateSection.querySelectorAll('.certificate-img'));
 
 const btnPrev = certificateSection.querySelector('.slider-btn-prev');
 const btnNext = certificateSection.querySelector('.slider-btn-next');
 
 let currentIndex = 0;
 
+const createNewCertificateItem = ({ name, alt }) => {
+  const item = document.createElement('li');
+  item.classList.add('certificate-item');
+
+  const img = document.createElement('img');
+  img.classList.add('certificate-img');
+  img.src = `./images/certificate/${name}@1x.webp`;
+  img.srcset = `./images/certificate/${name}@2x.webp`;
+  img.width = 240;
+  img.height = 320;
+  img.alt = alt;
+  img.loading = 'lazy';
+
+  item.appendChild(img);
+
+  return item;
+};
+
+const renderAdditionalCertificates = () => {
+  const items = additionalCertificates.map(createNewCertificateItem);
+  certificateList.append(...items);
+};
+
+renderAdditionalCertificates();
+
+const certificatePhotos = Array.from(certificateSection.querySelectorAll('.certificate-img'));
+
+const updateGridPosition = () => {
+  const firstItem = certificateList.querySelector('.certificate-item');
+
+  if (!firstItem || !listContainer) {
+    return;
+  }
+
+  const itemHeight = firstItem.offsetHeight; // высота первой карточки
+  const rowGap = parseFloat(getComputedStyle(certificateList).rowGap) || GAP; // отступ между рядами
+  const rowStep = itemHeight + rowGap; // высота одного ряда с отступом между рядами
+
+  listContainer.computedStyleMap.maxHeight = `${itemHeight * 2 + rowGap}px`; // высота видимой части контейнера с карточками - 2 ряда с отступом между ними
+
+  const currentRow = Math.floor(currentIndex / 2); // текущий ряд в котором выбрана карточка
+  const totalRows = Math.ceil(certificatePhotos.lenght / 2); // всего рядов
+
+  // сдвигаю список вверх начиная со второго ряда
+  let targetRowOffset = Math.max(0, currentRow - 1);
+  const maxRowOffset = Math.max(0, totalRows - 2);
+
+  if (targetRowOffset > maxRowOffset) {
+    targetRowOffset = maxRowOffset;
+  }
+
+  certificateList.style.transform = `translateY(-${targetRowOffset * rowStep}px)`;
+}
+
+
 const setActiveSlide = (index, shouldMoveList = false) => {
   currentIndex = index;
 
-  activePhoto.src = certificatePhotos[currentIndex].src;
-  activePhoto.srcset = certificatePhotos[currentIndex].srcset;
+  const targetImg = certificatePhotos[currentIndex];
+
+  activePhoto.src = targetImg.src;
+  activePhoto.srcset = targetImg.srcset;
+  activePhoto.alt = targetImg.alt;
 
   certificatePhotos.forEach((item, i) => {
     const isCurrent = i === currentIndex;
@@ -20,23 +81,7 @@ const setActiveSlide = (index, shouldMoveList = false) => {
   });
 
   if (shouldMoveList) {
-    const container = certificateSection.querySelector('.certificate-list-container');
-    const firstItem = certificateList.querySelector('.certificate-item');
-
-    if (container && firstItem) {
-      const itemWidth = firstItem.clientWidth;
-      const gap = parseFloat(getComputedStyle(certificateList).gap) || 20;
-
-      let translateX = currentIndex * (itemWidth + gap);
-
-      const maxScroll = certificateList.scrollWidth - container.clientWidth;
-
-      if (translateX > maxScroll) {
-        translateX = maxScroll;
-      }
-
-      certificateList.style.transform = `translateX(-${translateX}px)`;
-    }
+    updateGridPosition();
   }
 
   btnPrev.disabled = currentIndex === 0;
@@ -71,8 +116,12 @@ certificateList.addEventListener('click', (evt) => {
   }
 });
 
-setActiveSlide(currentIndex);
+if (certificatePhotos.length > 0) {
+  setActiveSlide(currentIndex, true);
+}
+
 
 window.addEventListener('resize', () => {
-  setActiveSlide(currentIndex, true);
+  // setActiveSlide(currentIndex, true);
+  updateGridPosition();
 });

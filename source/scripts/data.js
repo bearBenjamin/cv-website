@@ -253,7 +253,28 @@ const additionalProjects = [
   }
 ];
 
-const additionalCertificates = {};
+const additionalCertificates = [
+  {
+    name: 'certificate-5',
+    alt: 'Сертифика JavaScript. Архитектура клиентских приложений'
+  },
+  {
+    name: 'certificate-6',
+    alt: 'Сертификат Мастер анимаций: CSS и JS-анимации'
+  },
+  {
+    name: 'certificate-7',
+    alt: 'Сертификат Шаблонизаторы HTML'
+  },
+  {
+    name: 'certificate-8',
+    alt: 'Сертификат Мастер анимаций: SVG-анимации'
+  },
+  {
+    name: 'certificate-9',
+    alt: 'Сертификат TypeScript, часть 1. Теория типов'
+  }
+];
 
 export { additionalProjects, additionalCertificates };
 
