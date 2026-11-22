@@ -1078,7 +1078,6 @@ body.dark-theme .btn-more-projects:hover {
   pointer-events: none;
 }
 
-
 body.dark-theme .btn-more-projects:hover,
 body.dark-theme .btn-less-projects:hover,
 body.dark-theme .contact-form-btn:hover {
@@ -1396,4 +1395,3 @@ body.dark-theme .slider-btn:hover {
 .form-status.is-error {
   color: #dc2626; /* красный для ошибки */
 }
-
