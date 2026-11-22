@@ -63,7 +63,7 @@ const updateGridPosition = () => {
   }
 
   certificateList.style.transform = `translateY(-${targetRowOffset * rowStep}px)`;
-}
+};
 
 
 const setActiveSlide = (index, shouldMoveList = false) => {
