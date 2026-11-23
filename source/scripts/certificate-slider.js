@@ -1,4 +1,5 @@
 import { additionalCertificates } from './data.js';
+
 const GAP = 20;
 
 const certificateSection = document.querySelector('.certificate-section');
